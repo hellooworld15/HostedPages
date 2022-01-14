@@ -130,10 +130,10 @@ export const uploadRecipe = async function (newRecipe) {
       .map(ing => {
         const ingArr = ing[1].split(',').map(el => el.trim());
         // const ingArr = ing[1].replaceAll(' ', '').split(',');
-        if (ingArr.length !== 3)
-          throw new Error(
-            'Wrong ingredient fromat! Please use the correct format :)'
-          );
+        // if (ingArr.length !== 3)
+        //   throw new Error(
+        //     'Wrong ingredient fromat! Please use the correct format :)'
+        //   );
 
         const [quantity, unit, description] = ingArr;
 
