@@ -6,8 +6,6 @@ class Workout {
   clicks = 0;
 
   constructor(coords, distance, duration) {
-    // this.date = ...
-    // this.id = ...
     this.coords = coords; // [lat, lng]
     this.distance = distance; // in km
     this.duration = duration; // in min
@@ -27,6 +25,7 @@ class Workout {
   }
 }
 
+// Extras specifically for running - cadence, pace
 class Running extends Workout {
   type = 'running';
 
@@ -44,6 +43,7 @@ class Running extends Workout {
   }
 }
 
+// Extras specifically for cycling - speed
 class Cycling extends Workout {
   type = 'cycling';
 
@@ -62,9 +62,6 @@ class Cycling extends Workout {
   }
 }
 
-// const run1 = new Running([39, -12], 5.2, 24, 178);
-// const cycling1 = new Cycling([39, -12], 27, 95, 523);
-// console.log(run1, cycling1);
 
 ///////////////////////////////////////
 // APPLICATION ARCHITECTURE
@@ -95,6 +92,7 @@ class App {
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
   }
 
+// Geolocation
   _getPosition() {
     if (navigator.geolocation)
       navigator.geolocation.getCurrentPosition(
@@ -105,6 +103,7 @@ class App {
       );
   }
 
+  //Display map 
   _loadMap(position) {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
@@ -207,7 +206,7 @@ class App {
     // Set local storage to all workouts
     this._setLocalStorage();
   }
-
+  // Display Marker
   _renderWorkoutMarker(workout) {
     L.marker(workout.coords)
       .addTo(this.#map)
